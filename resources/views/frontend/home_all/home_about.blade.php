@@ -1,6 +1,6 @@
 @php
 
-$aboutpage = App\Models\About::find(1);
+$aboutpage = App\Models\About::query()->find(1);
 $allMultiImage = App\Models\MultiImage::all();
 @endphp
 
@@ -11,7 +11,7 @@ $allMultiImage = App\Models\MultiImage::all();
     <ul class="about__icons__wrap">
         @foreach($allMultiImage as $item)
     <li>
-    <img class="light" src="{{ asset($item->multi_image ) }}" alt="XD"> 
+    <img class="light" src="{{ asset($item->multi_image ) }}" alt="XD">
     </li>
             @endforeach
 
