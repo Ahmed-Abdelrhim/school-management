@@ -1,9 +1,10 @@
 @extends('frontend.main_master')
+@section('title')
+    Home | EasyLearning Website
+@endsection
 @section('main')
 
-@section('title')
-Home | EasyLearning Website
-@endsection
+
     <!-- banner-area -->
     @include('frontend.home_all.home_slide')
     <!-- banner-area-end -->
@@ -214,7 +215,7 @@ Home | EasyLearning Website
     <!-- work-process-area-end -->
 
     <!-- portfolio-area -->
-    
+
   @include('frontend.home_all.portfolio')
 
     <!-- portfolio-area-end -->

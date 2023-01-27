@@ -1,6 +1,6 @@
 
 @php
-$homeslide = App\Models\HomeSlide::find(1);
+$homeslide = App\Models\HomeSlide::query()->find(1);
 
 @endphp
 
