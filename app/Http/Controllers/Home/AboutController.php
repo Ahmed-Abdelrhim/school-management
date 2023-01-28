@@ -160,7 +160,8 @@ class AboutController extends Controller
     {
 
         $allMultiImage = MultiImage::all();
-        return view('admin.about_page.all_multiimage', compact('allMultiImage'));
+        // return view('admin.about_page.all_multiimage', compact('allMultiImage'));
+        return view('admin.about_page.all_multiimage', ['allMultiImage' => $allMultiImage]);
 
     }// End Method
 
@@ -207,11 +208,12 @@ class AboutController extends Controller
     public function DeleteMultiImage($id)
     {
 
-        $multi = MultiImage::findOrFail($id);
+        return $multi = MultiImage::query()->findOrFail($id);
+
         $img = $multi->multi_image;
         unlink($img);
 
-        MultiImage::findOrFail($id)->delete();
+        MultiImage::query()->findOrFail($id)->delete();
 
         $notification = array(
             'message' => 'Multi Image Deleted Successfully',
