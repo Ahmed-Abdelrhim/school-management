@@ -80,15 +80,15 @@
                 rules : {
                     blog_category : {
                         required: true,
-                        min: 3,
-                        max: 30,
+                        // min: 3,
+                        // max: 30,
                     },
                 },
                 messages: {
                     blog_category: {
                         required : 'Please Enter Blog Category',
-                        min : 'Blog Category should not be less than 4 chars',
-                        max : 'Blog Category should not be more than 30 chars',
+                        // min : 'Blog Category should not be less than 4 chars',
+                        // max : 'Blog Category should not be more than 30 chars',
                     },
                 },
 

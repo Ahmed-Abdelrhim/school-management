@@ -8,30 +8,30 @@ use App\Models\BlogCategory;
 
 class BlogCategoryController extends Controller
 {
-    public function AllBlogCategory(){
+    public function AllBlogCategory()
+    {
 
-        $blogcategory = BlogCategory::latest()->get();
-        return view('admin.blog_category.blog_category_all',compact('blogcategory'));
+        $blogcategory = BlogCategory::query()->latest()->get();
+        return view('admin.blog_category.blog_category_all', compact('blogcategory'));
 
     } // End Method
 
 
-    public function AddBlogCategory(){
-
+    public function AddBlogCategory()
+    {
         return view('admin.blog_category.blog_category_add');
     } // End Method
 
 
-    public function StoreBlogCategory(Request $request){
-  
-         
-            BlogCategory::insert([
-                'blog_category' => $request->blog_category,               
+    public function StoreBlogCategory(Request $request)
+    {
+        BlogCategory::query()->insert([
+            'blog_category' => $request->blog_category,
 
-            ]); 
+        ]);
 
-            $notification = array(
-            'message' => 'Blog Category Inserted Successfully', 
+        $notification = array(
+            'message' => 'Blog Category Inserted Successfully',
             'alert-type' => 'success'
         );
 
@@ -41,23 +41,25 @@ class BlogCategoryController extends Controller
     } // End Method
 
 
-    public function EditBlogCategory($id){
+    public function EditBlogCategory($id)
+    {
 
         $blogcategory = BlogCategory::findOrFail($id);
-        return view('admin.blog_category.blog_category_edit',compact('blogcategory'));
+        return view('admin.blog_category.blog_category_edit', compact('blogcategory'));
 
     } // End Method
 
 
-    public function UpdateBlogCategory(Request $request,$id){
+    public function UpdateBlogCategory(Request $request, $id)
+    {
 
-         BlogCategory::findOrFail($id)->update([
-                'blog_category' => $request->blog_category,               
+        BlogCategory::findOrFail($id)->update([
+            'blog_category' => $request->blog_category,
 
-            ]); 
+        ]);
 
-            $notification = array(
-            'message' => 'Blog Category Updated Successfully', 
+        $notification = array(
+            'message' => 'Blog Category Updated Successfully',
             'alert-type' => 'success'
         );
 
@@ -65,20 +67,19 @@ class BlogCategoryController extends Controller
 
     } // End Method
 
-    public function DeleteBlogCategory($id){
+    public function DeleteBlogCategory($id)
+    {
+        $id = decrypt($id);
+        BlogCategory::query()->findOrFail($id)->delete();
 
-        BlogCategory::findOrFail($id)->delete();
-
-         $notification = array(
-            'message' => 'Blog Category Deleted Successfully', 
+        $notification = array(
+            'message' => 'Blog Category Deleted Successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);       
+        return redirect()->back()->with($notification);
 
     } // End Method
-
 
 
 }
- 
