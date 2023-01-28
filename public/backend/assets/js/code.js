@@ -16,11 +16,11 @@ $(function () {
             if (isConfirm) {
                 $('#link').submit();
                 // window.location.href = link
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
             }
         })
 

@@ -45,7 +45,7 @@
                                                  style="width: 60px; height: 50px;" alt="">
                                         </td>
 
-                                        <td>
+                                        <td class="d-flex">
                                             {{-- <a href="{{ route('edit.multi.image',$item->id) }}" class="btn btn-info sm"--}}
                                             {{-- title="Edit Data"> <i class="fas fa-edit"></i> </a>--}}
 
@@ -53,10 +53,9 @@
                                                class="btn btn-info sm"
                                                title="Edit Data"> <i class="fas fa-edit"></i> </a>
 
-                                            <form method="POST" action="{{route('delete.multi.image',$item->id)}}" id="link">
+                                            <form method="POST" action="{{route('delete.multi.image',encrypt($item->id))}}" id="link" style="margin-left: 10px;">
                                                 @csrf
-                                                <a
-                                                   class="btn btn-danger sm" title="Delete Data" id="delete"> <i
+                                                <a class="btn btn-danger sm" title="Delete Data" id="delete"> <i
                                                         class="fas fa-trash-alt"></i> </a>
                                             </form>
 

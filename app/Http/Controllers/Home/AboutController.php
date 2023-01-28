@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\MultiImage;
-use Image;
+//use Image;
 use Illuminate\Support\Carbon;
+use Intervention\Image\Facades\Image;
 
 class AboutController extends Controller
 {
@@ -187,7 +189,7 @@ class AboutController extends Controller
             Image::make($image)->resize(220, 220)->save('upload/multi/' . $name_gen);
             $save_url = 'upload/multi/' . $name_gen;
 
-            MultiImage::findOrFail($multi_image_id)->update([
+            MultiImage::query()->findOrFail($multi_image_id)->update([
 
                 'multi_image' => $save_url,
 
@@ -205,10 +207,10 @@ class AboutController extends Controller
     }// End Method
 
 
-    public function DeleteMultiImage($id)
+    public function DeleteMultiImage($id): RedirectResponse
     {
-
-        return $multi = MultiImage::query()->findOrFail($id);
+        $id = decrypt($id);
+        $multi = MultiImage::query()->findOrFail($id);
 
         $img = $multi->multi_image;
         unlink($img);
