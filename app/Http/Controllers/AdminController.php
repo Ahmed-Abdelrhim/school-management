@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -39,7 +40,7 @@ class AdminController extends Controller
     {
 
         $id = Auth::user()->id;
-        $editData = User::find($id);
+        $editData = User::query()->find($id);
         return view('admin.admin_profile_edit', compact('editData'));
     }// End Method
 
@@ -54,8 +55,10 @@ class AdminController extends Controller
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
 
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'), $filename);
+            $filename = date('YmdHi') . '.' .$file->getClientOriginalName();
+            // $file->move(public_path('upload/admin_images'), $filename);
+            Image::make($file)->resize(200,200)->save('upload/admin_images/'.$filename);
+
             $data['profile_image'] = $filename;
         }
         $data->save();
